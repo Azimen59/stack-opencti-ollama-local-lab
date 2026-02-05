@@ -163,7 +163,6 @@ MISP
 AbuseIPDB
 
 Publish CTI playbooks using OpenClaw + local LLM
-
 graph TD
     subgraph Host_VM[Linux VM / Host]
         subgraph OpenCTI_Stack[OpenCTI Stack]
@@ -173,25 +172,13 @@ graph TD
             RMQ[RabbitMQ]
             Redis[Redis]
         end
-
-        Ollama[Ollama LLM\nHTTP :11434]
-
+      Ollama[Ollama LLM\nHTTP :11434]
         OpenClaw[OpenClaw Gateway\n(outside Docker)]
     end
-
     OpenCTI --> ES
     OpenCTI --> MinIO
     OpenCTI --> RMQ
     OpenCTI --> Redis
-
     OpenClaw --> Ollama
-
-    Users[Analysts / UI] --> OpenCTI
+    Users[Analysts / Web UI] --> OpenCTI
     Devices[Mobile / Desktop Nodes] --> OpenClaw
-
-
-Troubleshooting guide in docs/
-
-Optional:
-
-Full .env-based configuration refactor
