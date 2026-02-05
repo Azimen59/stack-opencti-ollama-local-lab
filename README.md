@@ -94,7 +94,7 @@ and must be replaced in any real or exposed environment.
 Clone the repository
 bash
 Copier le code
-git clone https://github.com/Azimen59/cyberwatch-local-lab.git
+git clone [https://github.com/Azimen59/stack-opencti-ollama-local-lab.git]
 cd cyberwatch-local-lab
 (Optional) Configure environment variables
 bash
