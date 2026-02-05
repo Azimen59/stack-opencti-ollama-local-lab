@@ -164,9 +164,31 @@ AbuseIPDB
 
 Publish CTI playbooks using OpenClaw + local LLM
 
-Add:
+graph TD
+    subgraph Host_VM[Linux VM / Host]
+        subgraph OpenCTI_Stack[OpenCTI Stack]
+            OpenCTI[OpenCTI Platform & Worker]
+            ES[Elasticsearch 8]
+            MinIO[MinIO (S3 storage)]
+            RMQ[RabbitMQ]
+            Redis[Redis]
+        end
 
-Architecture diagram
+        Ollama[Ollama LLM\nHTTP :11434]
+
+        OpenClaw[OpenClaw Gateway\n(outside Docker)]
+    end
+
+    OpenCTI --> ES
+    OpenCTI --> MinIO
+    OpenCTI --> RMQ
+    OpenCTI --> Redis
+
+    OpenClaw --> Ollama
+
+    Users[Analysts / UI] --> OpenCTI
+    Devices[Mobile / Desktop Nodes] --> OpenClaw
+
 
 Troubleshooting guide in docs/
 
